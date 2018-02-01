@@ -20,7 +20,7 @@ namespace Insurance.Data
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
     
-        public virtual Client Client { get; set; }
         public virtual Policy Policy { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

@@ -25,10 +25,10 @@ namespace Insurance.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<CoverageKind> CoverageKind { get; set; }
         public virtual DbSet<Policy> Policy { get; set; }
         public virtual DbSet<RiskKind> RiskKind { get; set; }
         public virtual DbSet<ClientPolicy> ClientPolicy { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
     }
 }

@@ -10,34 +10,34 @@ namespace Insurance.Core.CRUD
 {
     public class ClientPolicyRepository : IClientPolicyRepository
     {
-        private InsuranceContext _context;
+        private EnsurancePolicyEntities _context;
 
-        public ClientPolicyRepository(InsuranceContext insuarenceContext)
+        public ClientPolicyRepository()
         {
-            this._context = insuarenceContext;
+            this._context = new EnsurancePolicyEntities();
         }
 
         public List<ClientPolicy> GetClientPolicyByClient(int clientId)
         {
-            var model = _context.ClientPolicies.Where(x => x.ClientId == clientId).ToList();
+            var model = _context.ClientPolicy.Where(x => x.ClientId == clientId).ToList();
             return model;
         }
 
         public ClientPolicy GetClientPolicyById(int Id)
         {
-            var model = _context.ClientPolicies.Find(Id);
+            var model = _context.ClientPolicy.Find(Id);
             return model;
         }
 
         public void InsertClientPolicy(ClientPolicy clientPolicy)
         {
-            _context.ClientPolicies.Add(clientPolicy);
+            _context.ClientPolicy.Add(clientPolicy);
         }
 
         public void DeleteClientPolicy(int Id)
         {
-            var model = _context.ClientPolicies.Find(Id);
-            _context.ClientPolicies.Remove(model);
+            var model = _context.ClientPolicy.Find(Id);
+            _context.ClientPolicy.Remove(model);
         }
 
         public void UpdateClientPolicy(ClientPolicy clientPolicy)

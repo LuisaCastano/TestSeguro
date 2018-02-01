@@ -13,7 +13,7 @@ namespace Insurance.Controllers
 
         public ClientsController()
         {
-            this._clientRepository = new ClientRepository(new InsuranceContext());
+            this._clientRepository = new ClientRepository();
         }
 
         // GET: Clients

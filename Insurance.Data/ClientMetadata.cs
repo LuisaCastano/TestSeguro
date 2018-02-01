@@ -9,20 +9,21 @@ namespace Insurance.Data
 {
     class ClientMetadata
     {
-        [Required]
-        [Display(Name = "Documento")]
-        public String Document { get; set; }
+        //    [Required]
+        //    [Display(Name = "Documento")]
+        //    public String Document { get; set; }
 
-        [Required]
-        [Display(Name = "Nombre")]
-        public String FirstName { get; set; }
+        //    [Required]
+        //    [Display(Name = "Nombre")]
+        //    public String FirstName { get; set; }
 
-        [Required]
-        [Display(Name = "Apellido")]
-        public String LastName { get; set; }
-    }
-    [MetadataType(typeof(ClientMetadata))]
-    public partial class Client
-    {
+        //    [Required]
+        //    [Display(Name = "Apellido")]
+        //    public String LastName { get; set; }
+        //}
+        //[MetadataType(typeof(ClientMetadata))]
+        //public partial class Client
+        //{
+        //}
     }
 }

@@ -17,7 +17,7 @@ namespace Insurance.Controllers
 
         public ClientPoliciesController()
         {
-            this._clientPolicyRepository = new ClientPolicyRepository(new InsuranceContext());
+            this._clientPolicyRepository = new ClientPolicyRepository();
         }
 
         // GET: ClientPolicies/Details/5
@@ -38,11 +38,11 @@ namespace Insurance.Controllers
         // GET: ClientPolicies/Create
         public ActionResult Create()
         {
-            using (var context = new ClientRepository(new InsuranceContext()))
+            using (var context = new ClientRepository())
             {
                 ViewBag.ClientId = new SelectList(context.GetClient(), "Id", "Document");
             }
-            using (var context = new PolicyRepository(new InsuranceContext()))
+            using (var context = new PolicyRepository())
             {
                 ViewBag.PolicyId = new SelectList(context.GetPolicy(), "Id", "Name");
             }
@@ -63,11 +63,11 @@ namespace Insurance.Controllers
 
                 // Resultados del create
             }
-            using (var context = new ClientRepository(new InsuranceContext()))
+            using (var context = new ClientRepository())
             {
                 ViewBag.ClientId = new SelectList(context.GetClient(), "Id", "Document");
             }
-            using (var context = new PolicyRepository(new InsuranceContext()))
+            using (var context = new PolicyRepository())
             {
                 ViewBag.PolicyId = new SelectList(context.GetPolicy(), "Id", "Name");
             }
@@ -86,11 +86,11 @@ namespace Insurance.Controllers
             {
                 return HttpNotFound();
             }
-            using (var context = new ClientRepository(new InsuranceContext()))
+            using (var context = new ClientRepository())
             {
                 ViewBag.ClientId = new SelectList(context.GetClient(), "Id", "Document");
             }
-            using (var context = new PolicyRepository(new InsuranceContext()))
+            using (var context = new PolicyRepository())
             {
                 ViewBag.PolicyId = new SelectList(context.GetPolicy(), "Id", "Name");
             }
@@ -110,11 +110,11 @@ namespace Insurance.Controllers
                 _clientPolicyRepository.Save();
                 //Validar 
             }
-            using (var context = new ClientRepository(new InsuranceContext()))
+            using (var context = new ClientRepository())
             {
                 ViewBag.ClientId = new SelectList(context.GetClient(), "Id", "Document");
             }
-            using (var context = new PolicyRepository(new InsuranceContext()))
+            using (var context = new PolicyRepository())
             {
                 ViewBag.PolicyId = new SelectList(context.GetPolicy(), "Id", "Name");
             }

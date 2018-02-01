@@ -10,28 +10,28 @@ namespace Insurance.Core.CRUD
 {
     public class PolicyRepository : IPolicyRepository
     {
-        private InsuranceContext _context;
+        private EnsurancePolicyEntities _context;
 
-        public PolicyRepository(InsuranceContext insuarenceContext)
+        public PolicyRepository()
         {
-            this._context = insuarenceContext;
+            this._context = new EnsurancePolicyEntities();
         }
 
         public List<Policy> GetPolicy()
         {
-            var model = _context.Policies.Include(p => p.CoverageKind).ToList();
+            var model = _context.Policy.Include(p => p.CoverageKind).ToList();
             return model;
         }
 
         public Policy GetPolicyById(int policyId)
         {
-            var model = _context.Policies.Find(policyId);
+            var model = _context.Policy.Find(policyId);
             return model;
         }
 
         public List<CoverageKind> GetCoverageKind()
         {
-            var model = _context.CoverageKinds.ToList();
+            var model = _context.CoverageKind.ToList();
             return model;
         }
 
@@ -44,13 +44,13 @@ namespace Insurance.Core.CRUD
         {
             //Antes de crear una poliza validar que siga las reglas del negocio
             
-            _context.Policies.Add(policy);
+            _context.Policy.Add(policy);
         }
 
         public void DeletePolicy(int policyId)
         {
-            var model = _context.Policies.Find(policyId);
-            _context.Policies.Remove(model);
+            var model = _context.Policy.Find(policyId);
+            _context.Policy.Remove(model);
         }
 
         public void UpdatePolicy(Policy policy)

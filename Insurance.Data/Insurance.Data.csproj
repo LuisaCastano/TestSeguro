@@ -50,17 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientMetadata.cs" />
     <Compile Include="Client.cs">
       <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientMetadata.cs" />
     <Compile Include="ClientPolicy.cs">
       <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
     <Compile Include="CoverageKind.cs">
       <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
-    <Compile Include="InsuranceContext.cs" />
     <Compile Include="ModelEnsurance.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -17,7 +17,7 @@ namespace Insurance.Controllers
 
         public PoliciesController()
         {
-            this._policyRepository = new PolicyRepository(new InsuranceContext());
+            this._policyRepository = new PolicyRepository();
         }
 
         // GET: Policies
