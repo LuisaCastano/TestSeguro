@@ -6,14 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="38146053673d465aa87da998cc417d73" Name="Diagram1">
         <EntityTypeShape EntityType="EnsurancePolicyModel.Client" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EnsurancePolicyModel.ClientPolicy" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EnsurancePolicyModel.CoverageKind" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="EnsurancePolicyModel.Policy" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="EnsurancePolicyModel.RiskKind" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <AssociationConnector Association="EnsurancePolicyModel.FK_ClientPolicy_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="EnsurancePolicyModel.FK_ClientPolicy_Policy" ManuallyRouted="false" />
         <AssociationConnector Association="EnsurancePolicyModel.FK_Policy_CoverageKind" ManuallyRouted="false" />
         <AssociationConnector Association="EnsurancePolicyModel.FK_Policy_RiskKind" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EnsurancePolicyModel.ClientPolicy" Width="1.5" PointX="5.25" PointY="3.125" />
+        <AssociationConnector Association="EnsurancePolicyModel.FK_ClientPolicy_Client" />
+        <AssociationConnector Association="EnsurancePolicyModel.FK_ClientPolicy_Policy" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

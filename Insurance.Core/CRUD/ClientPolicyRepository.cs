@@ -23,9 +23,9 @@ namespace Insurance.Core.CRUD
             return model;
         }
 
-        public ClientPolicy GetClientPolicyById(int clientId,int policyId)
+        public ClientPolicy GetClientPolicyById(int Id)
         {
-            var model = _context.ClientPolicies.FirstOrDefault(x => x.ClientId == clientId && x.PolicyId == policyId);
+            var model = _context.ClientPolicies.Find(Id);
             return model;
         }
 
@@ -34,9 +34,9 @@ namespace Insurance.Core.CRUD
             _context.ClientPolicies.Add(clientPolicy);
         }
 
-        public void DeleteClientPolicy(int clientId, int policyId)
+        public void DeleteClientPolicy(int Id)
         {
-            var model = _context.ClientPolicies.FirstOrDefault(x => x.ClientId == clientId && x.PolicyId == policyId);
+            var model = _context.ClientPolicies.Find(Id);
             _context.ClientPolicies.Remove(model);
         }
 

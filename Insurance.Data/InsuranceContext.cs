@@ -12,5 +12,7 @@ namespace Insurance.Data
         public DbSet<Policy> Policies { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<ClientPolicy> ClientPolicies { get; set; }
+
+        public System.Data.Entity.DbSet<Insurance.Data.CoverageKind> CoverageKinds { get; set; }
     }
 }

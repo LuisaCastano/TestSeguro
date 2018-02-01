@@ -14,6 +14,7 @@ namespace Insurance.Data
     
     public partial class ClientPolicy
     {
+        public int Id { get; set; }
         public int ClientId { get; set; }
         public int PolicyId { get; set; }
         public System.DateTime StartTime { get; set; }

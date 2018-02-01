@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EnsurancePolicyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EnsurancePolicyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,9 +17,9 @@
         </EntityType>
         <EntityType Name="ClientPolicy">
           <Key>
-            <PropertyRef Name="ClientId" />
-            <PropertyRef Name="PolicyId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="PolicyId" Type="int" Nullable="false" />
           <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
@@ -125,8 +125,7 @@
             <End Role="Policy" EntitySet="Policy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EnsurancePolicyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -139,19 +138,7 @@
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ClientPolicy" Relationship="Self.FK_ClientPolicy_Client" FromRole="Client" ToRole="ClientPolicy" />
-        </EntityType>
-        <EntityType Name="ClientPolicy">
-          <Key>
-            <PropertyRef Name="ClientId" />
-            <PropertyRef Name="PolicyId" />
-          </Key>
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="PolicyId" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_ClientPolicy_Client" FromRole="ClientPolicy" ToRole="Client" />
-          <NavigationProperty Name="Policy" Relationship="Self.FK_ClientPolicy_Policy" FromRole="ClientPolicy" ToRole="Policy" />
+          <NavigationProperty Name="ClientPolicy" Relationship="EnsurancePolicyModel.FK_ClientPolicy_Client" FromRole="Client" ToRole="ClientPolicy" />
         </EntityType>
         <EntityType Name="CoverageKind">
           <Key>
@@ -174,9 +161,9 @@
           <Property Name="Period" Type="Int16" Nullable="false" />
           <Property Name="RiskKind" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientPolicy" Relationship="Self.FK_ClientPolicy_Policy" FromRole="Policy" ToRole="ClientPolicy" />
           <NavigationProperty Name="CoverageKind" Relationship="Self.FK_Policy_CoverageKind" FromRole="Policy" ToRole="CoverageKind" />
           <NavigationProperty Name="RiskKind1" Relationship="Self.FK_Policy_RiskKind" FromRole="Policy" ToRole="RiskKind" />
+          <NavigationProperty Name="ClientPolicy" Relationship="EnsurancePolicyModel.FK_ClientPolicy_Policy" FromRole="Policy" ToRole="ClientPolicy" />
         </EntityType>
         <EntityType Name="RiskKind">
           <Key>
@@ -187,30 +174,6 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Policy" Relationship="Self.FK_Policy_RiskKind" FromRole="RiskKind" ToRole="Policy" />
         </EntityType>
-        <Association Name="FK_ClientPolicy_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="ClientPolicy" Type="Self.ClientPolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClientPolicy">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientPolicy_Policy">
-          <End Role="Policy" Type="Self.Policy" Multiplicity="1" />
-          <End Role="ClientPolicy" Type="Self.ClientPolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Policy">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClientPolicy">
-              <PropertyRef Name="PolicyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Policy_CoverageKind">
           <End Role="CoverageKind" Type="Self.CoverageKind" Multiplicity="1" />
           <End Role="Policy" Type="Self.Policy" Multiplicity="*" />
@@ -237,18 +200,9 @@
         </Association>
         <EntityContainer Name="EnsurancePolicyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
-          <EntitySet Name="ClientPolicy" EntityType="Self.ClientPolicy" />
           <EntitySet Name="CoverageKind" EntityType="Self.CoverageKind" />
           <EntitySet Name="Policy" EntityType="Self.Policy" />
           <EntitySet Name="RiskKind" EntityType="Self.RiskKind" />
-          <AssociationSet Name="FK_ClientPolicy_Client" Association="Self.FK_ClientPolicy_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="ClientPolicy" EntitySet="ClientPolicy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientPolicy_Policy" Association="Self.FK_ClientPolicy_Policy">
-            <End Role="Policy" EntitySet="Policy" />
-            <End Role="ClientPolicy" EntitySet="ClientPolicy" />
-          </AssociationSet>
           <AssociationSet Name="FK_Policy_CoverageKind" Association="Self.FK_Policy_CoverageKind">
             <End Role="CoverageKind" EntitySet="CoverageKind" />
             <End Role="Policy" EntitySet="Policy" />
@@ -257,7 +211,52 @@
             <End Role="RiskKind" EntitySet="RiskKind" />
             <End Role="Policy" EntitySet="Policy" />
           </AssociationSet>
+          <EntitySet Name="ClientPolicy" EntityType="EnsurancePolicyModel.ClientPolicy" />
+          <AssociationSet Name="FK_ClientPolicy_Client" Association="EnsurancePolicyModel.FK_ClientPolicy_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientPolicy" EntitySet="ClientPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPolicy_Policy" Association="EnsurancePolicyModel.FK_ClientPolicy_Policy">
+            <End Role="Policy" EntitySet="Policy" />
+            <End Role="ClientPolicy" EntitySet="ClientPolicy" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ClientPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyId" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Client" Relationship="EnsurancePolicyModel.FK_ClientPolicy_Client" FromRole="ClientPolicy" ToRole="Client" />
+          <NavigationProperty Name="Policy" Relationship="EnsurancePolicyModel.FK_ClientPolicy_Policy" FromRole="ClientPolicy" ToRole="Policy" />
+        </EntityType>
+        <Association Name="FK_ClientPolicy_Client">
+          <End Type="EnsurancePolicyModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="EnsurancePolicyModel.ClientPolicy" Role="ClientPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientPolicy">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPolicy_Policy">
+          <End Type="EnsurancePolicyModel.Policy" Role="Policy" Multiplicity="1" />
+          <End Type="EnsurancePolicyModel.ClientPolicy" Role="ClientPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientPolicy">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -272,16 +271,6 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClientPolicy">
-            <EntityTypeMapping TypeName="EnsurancePolicyModel.ClientPolicy">
-              <MappingFragment StoreEntitySet="ClientPolicy">
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -314,6 +303,17 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientPolicy">
+            <EntityTypeMapping TypeName="EnsurancePolicyModel.ClientPolicy">
+              <MappingFragment StoreEntitySet="ClientPolicy">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

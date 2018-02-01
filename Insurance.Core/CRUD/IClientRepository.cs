@@ -4,7 +4,7 @@ using Insurance.Data;
 
 namespace Insurance.Core.CRUD
 {
-    interface IClientRepository : IDisposable
+    public interface IClientRepository : IDisposable
     {
         List<Client> GetClient();
         Client GetClientById(int clientId);

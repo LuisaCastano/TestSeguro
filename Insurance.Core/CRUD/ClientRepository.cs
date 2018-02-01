@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Insurance.Core.CRUD
 {
-    class ClientRepository : IClientRepository
+    public class ClientRepository : IClientRepository
     {
         private InsuranceContext _context;
 

@@ -4,10 +4,11 @@ using Insurance.Data;
 
 namespace Insurance.Core.CRUD
 {
-    interface IPolicyRepository : IDisposable
+    public interface IPolicyRepository : IDisposable
     {
         List<Policy> GetPolicy();
         Policy GetPolicyById(int PolicyId);
+        List<CoverageKind> GetCoverageKind();
         void InsertPolicy(Policy Policy);
         void DeletePolicy(int PolicyId);
         void UpdatePolicy(Policy Policy);

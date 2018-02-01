@@ -29,9 +29,9 @@ namespace Insurance.Data
         public int RiskKind { get; set; }
         public string Description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientPolicy> ClientPolicy { get; set; }
         public virtual CoverageKind CoverageKind { get; set; }
         public virtual RiskKind RiskKind1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClientPolicy> ClientPolicy { get; set; }
     }
 }

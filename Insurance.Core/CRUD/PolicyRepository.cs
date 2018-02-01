@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Insurance.Core.CRUD
 {
-    class PolicyRepository : IPolicyRepository
+    public class PolicyRepository : IPolicyRepository
     {
         private InsuranceContext _context;
 
@@ -19,7 +19,7 @@ namespace Insurance.Core.CRUD
 
         public List<Policy> GetPolicy()
         {
-            var model = _context.Policies.ToList();
+            var model = _context.Policies.Include(p => p.CoverageKind).ToList();
             return model;
         }
 
@@ -29,8 +29,21 @@ namespace Insurance.Core.CRUD
             return model;
         }
 
+        public List<CoverageKind> GetCoverageKind()
+        {
+            var model = _context.CoverageKinds.ToList();
+            return model;
+        }
+
+        //public List<RiskKind> GetRiskKind()
+        //{
+            
+        //}
+
         public void InsertPolicy(Policy policy)
         {
+            //Antes de crear una poliza validar que siga las reglas del negocio
+            
             _context.Policies.Add(policy);
         }
 
