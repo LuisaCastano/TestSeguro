@@ -6,10 +6,10 @@ namespace Insurance.Core.CRUD
 {
     interface IPolicyRepository : IDisposable
     {
-        List<Policy> GetPolicy(int policyId);
+        List<Policy> GetPolicy();
         Policy GetPolicyById(int PolicyId);
         void InsertPolicy(Policy Policy);
-        void DeleteClientPolicy(int PolicyId);
+        void DeletePolicy(int PolicyId);
         void UpdatePolicy(Policy Policy);
         void Save();
     }

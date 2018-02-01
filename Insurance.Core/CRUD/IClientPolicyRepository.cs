@@ -7,9 +7,9 @@ namespace Insurance.Core.CRUD
     interface IClientPolicyRepository : IDisposable
     {
         List<ClientPolicy> GetClientPolicyByClient(int clientId);
-        ClientPolicy GetClientPolicyById(int clientPolicyId);
+        ClientPolicy GetClientPolicyById(int clientId, int policyId);
         void InsertClientPolicy(ClientPolicy clientPolicy);
-        void DeleteClientPolicy(int clientPolicyId);
+        void DeleteClientPolicy(int clientId, int policyId);
         void UpdateClientPolicy(ClientPolicy clientPolicy);
         void Save();
     }

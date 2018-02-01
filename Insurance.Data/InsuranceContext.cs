@@ -2,7 +2,7 @@
 
 namespace Insurance.Data
 {
-    class InsuranceContext : DbContext
+    public class InsuranceContext : DbContext
     {
         public InsuranceContext()
             :base("name:EnsurancePolicyEntities")
