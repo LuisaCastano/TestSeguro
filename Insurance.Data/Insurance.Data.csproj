@@ -49,17 +49,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs">
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPolicy.cs">
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoverageKind.cs">
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceContext.cs" />
     <Compile Include="ModelEnsurance.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEnsurance.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEnsurance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelEnsurance.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEnsurance.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Policy.cs">
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiskKind.cs">
+      <DependentUpon>ModelEnsurance.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ModelEnsurance.edmx">
@@ -78,6 +99,12 @@
     <Content Include="ModelEnsurance.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelEnsurance.Context.cs</LastGenOutput>
+      <DependentUpon>ModelEnsurance.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelEnsurance.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelEnsurance.edmx</DependentUpon>
+      <LastGenOutput>ModelEnsurance.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
