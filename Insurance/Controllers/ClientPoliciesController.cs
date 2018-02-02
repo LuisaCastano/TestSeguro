@@ -21,6 +21,11 @@ namespace Insurance.Controllers
             this._clientPolicyRepository = new ClientPolicyRepository();
         }
 
+        public ActionResult Index()
+        {
+            var model = _clientPolicyRepository.GetClientPolicy();
+            return View(model);
+        }
         // GET: ClientPolicies/Details/5
         public ActionResult Details(int? id)
         {
@@ -61,8 +66,7 @@ namespace Insurance.Controllers
             {
                 _clientPolicyRepository.InsertClientPolicy(clientPolicy);
                 _clientPolicyRepository.Save();
-
-                // Resultados del create
+                return RedirectToAction("Index");
             }
             using (var context = new ClientRepository())
             {
@@ -109,7 +113,7 @@ namespace Insurance.Controllers
             {
                 _clientPolicyRepository.UpdateClientPolicy(clientPolicy);
                 _clientPolicyRepository.Save();
-                //Validar 
+                return RedirectToAction("Index");
             }
             using (var context = new ClientRepository())
             {
@@ -144,7 +148,6 @@ namespace Insurance.Controllers
         {
             _clientPolicyRepository.DeleteClientPolicy(id);
             _clientPolicyRepository.Save();
-            //Retornar respuesta en ajax
             return RedirectToAction("Index");
         }
     }

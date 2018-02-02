@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Insurance.Data;
 using Insurance.Core.CRUD;
+using Insurance.Core.Services;
 
 namespace Insurance.Controllers
 {
@@ -60,13 +61,23 @@ namespace Insurance.Controllers
         {
             if (ModelState.IsValid)
             {
+                //validar la regla de negocio
+                var service = new Service();
+                var validate = service.CheckRiskKind(policy.RiskKind, policy.Coverage);
+                if (!validate)
+                {
+                    ModelState.AddModelError("Riesgo alto", "Para el riesgo Alto, la cobertura debe ser menor al 50%");
+                    ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name", policy.CoverageKindId);
+                    ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name", policy.RiskKind1);
+                    return View(policy);
+                }
                 _policyRepository.InsertPolicy(policy);
                 _policyRepository.Save();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name", policy.CoverageKindId);
-            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name");
+            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name", policy.RiskKind1);
             return View(policy);
         }
 

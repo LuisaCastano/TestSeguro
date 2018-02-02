@@ -36,7 +36,11 @@ namespace Insurance.Controllers
             {
                 return HttpNotFound();
             }
-            return View(client);
+            using (var context = new ClientPolicyRepository())
+            {
+                ViewBag.Policy = context.GetClientPolicyByClient(id.Value);
+            }
+                return View(client);
         }
 
         // GET: Clients/Create

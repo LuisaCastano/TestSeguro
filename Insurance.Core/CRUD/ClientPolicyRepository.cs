@@ -17,6 +17,12 @@ namespace Insurance.Core.CRUD
             this._context = new EnsurancePolicyEntities();
         }
 
+        public List<ClientPolicy> GetClientPolicy()
+        {
+            var model = _context.ClientPolicy.ToList();
+            return model;
+        }
+
         public List<ClientPolicy> GetClientPolicyByClient(int clientId)
         {
             var model = _context.ClientPolicy.Where(x => x.ClientId == clientId).ToList();

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    List<Insurance.Data.ClientPolicy> clientPolicies = ViewBag.Policy;
 }
 
 <h2>Details</h2>
@@ -44,6 +45,45 @@
 
     </dl>
 </div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            N° de póliza
+        </th>
+        <th>
+            Fecha de inicio
+        </th>
+        <th>
+           Fecha de fin
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in clientPolicies)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PolicyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit","ClientPolicies", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", "ClientPolicies", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", "ClientPolicies", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

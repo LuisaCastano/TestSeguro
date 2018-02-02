@@ -57,6 +57,7 @@
     <Compile Include="ClientPolicy.cs">
       <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientPolicyMetadata.cs" />
     <Compile Include="CoverageKind.cs">
       <DependentUpon>ModelEnsurance.tt</DependentUpon>
     </Compile>
