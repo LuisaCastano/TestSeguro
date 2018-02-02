@@ -19,10 +19,12 @@ namespace Insurance.Data
 
         [Required]
         [Display(Name = "Fecha de inicio")]
+        [DataType(DataType.DateTime, ErrorMessage = "La fecha de inicio debe ser aaaa/mm/dd")]
         public System.DateTime StartTime { get; set; }
 
         [Required]
         [Display(Name = "Fecha de fin")]
+        [DataType(DataType.DateTime, ErrorMessage = "La fecha de fin debe ser aaaa/mm/dd")]
         public System.DateTime EndTime { get; set; }
     }
     [MetadataType(typeof(ClientPolicyMetadata))]
