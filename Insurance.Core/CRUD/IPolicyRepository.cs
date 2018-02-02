@@ -9,6 +9,7 @@ namespace Insurance.Core.CRUD
         List<Policy> GetPolicy();
         Policy GetPolicyById(int PolicyId);
         List<CoverageKind> GetCoverageKind();
+        List<RiskKind> GetRiskKind();
         void InsertPolicy(Policy Policy);
         void DeletePolicy(int PolicyId);
         void UpdatePolicy(Policy Policy);

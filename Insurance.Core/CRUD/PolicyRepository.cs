@@ -35,15 +35,14 @@ namespace Insurance.Core.CRUD
             return model;
         }
 
-        //public List<RiskKind> GetRiskKind()
-        //{
-            
-        //}
+        public List<RiskKind> GetRiskKind()
+        {
+            var model =_context.RiskKind.ToList();
+            return model;
+        }
 
         public void InsertPolicy(Policy policy)
         {
-            //Antes de crear una poliza validar que siga las reglas del negocio
-            
             _context.Policy.Add(policy);
         }
 

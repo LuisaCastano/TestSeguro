@@ -47,6 +47,7 @@ namespace Insurance.Controllers
         public ActionResult Create()
         {
             ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name");
+            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name");
             return View();
         }
 
@@ -65,6 +66,7 @@ namespace Insurance.Controllers
             }
 
             ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name", policy.CoverageKindId);
+            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name");
             return View(policy);
         }
 
@@ -81,6 +83,7 @@ namespace Insurance.Controllers
                 return HttpNotFound();
             }
             ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name", policy.CoverageKindId);
+            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name",policy.RiskKind1);
             return View(policy);
         }
 
@@ -98,6 +101,7 @@ namespace Insurance.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CoverageKindId = new SelectList(_policyRepository.GetCoverageKind(), "Id", "Name", policy.CoverageKindId);
+            ViewBag.RiskKind = new SelectList(_policyRepository.GetRiskKind(), "Id", "Name", policy.RiskKind1);
             return View(policy);
         }
 
