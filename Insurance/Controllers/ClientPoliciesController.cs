@@ -11,6 +11,7 @@ using Insurance.Core.CRUD;
 
 namespace Insurance.Controllers
 {
+    [Authorize]
     public class ClientPoliciesController : Controller
     {
         private IClientPolicyRepository _clientPolicyRepository;

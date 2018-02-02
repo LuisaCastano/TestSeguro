@@ -7,6 +7,7 @@ using Insurance.Core.CRUD;
 
 namespace Insurance.Controllers
 {
+    [Authorize]
     public class ClientsController : Controller
     {
         private IClientRepository _clientRepository;

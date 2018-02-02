@@ -121,23 +121,23 @@ namespace Insurance.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
-
-            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        public ActionResult Index()
+        {
+            return View();
+        }
+        
+
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
@@ -175,7 +175,7 @@ namespace Insurance.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index", "Home");
         }
         #endregion
     }
